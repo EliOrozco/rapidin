@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://7g1eo0tm8px6"]
+
+[ext_resource type="Script" uid="uid://bc2323h165nn4" path="res://scripts/player_projectile_spawner.gd" id="1_0lrkw"]
+[ext_resource type="PackedScene" uid="uid://cb2olrelwusim" path="res://scenes/player_projectile.tscn" id="2_ehwi2"]
+
+[node name="PlayerProjectileSpawner" type="Node3D" unique_id=1103244674]
+script = ExtResource("1_0lrkw")
+proj = ExtResource("2_ehwi2")
+
+[node name="Timer" type="Timer" parent="." unique_id=816439304]
+unique_name_in_owner = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://djv33atg1niub"]
+
+[ext_resource type="Script" uid="uid://h0g2g316huv" path="res://scripts/sound_player.gd" id="1_50jlu"]
+[ext_resource type="AudioStream" uid="uid://08lphln6i4v4" path="res://fx/sfx/hit.wav" id="2_lxfhb"]
+[ext_resource type="AudioStream" uid="uid://bqf0vh4or6rli" path="res://fx/sfx/death.wav" id="3_lxfhb"]
+
+[node name="SoundPlayer" type="Node" unique_id=161156493]
+script = ExtResource("1_50jlu")
+
+[node name="Hit" type="AudioStreamPlayer" parent="." unique_id=282982824]
+unique_name_in_owner = true
+stream = ExtResource("2_lxfhb")
+
+[node name="Death" type="AudioStreamPlayer" parent="." unique_id=83571153]
+unique_name_in_owner = true
+stream = ExtResource("3_lxfhb")

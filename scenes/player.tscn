@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://drffra5edtape"]
+
+[ext_resource type="Script" uid="uid://c24buu0wbnwws" path="res://scripts/player.gd" id="1_3vyb7"]
+[ext_resource type="Material" uid="uid://e20utttldc0t" path="res://materials/player.tres" id="2_g2els"]
+[ext_resource type="PackedScene" uid="uid://rpqqup4a7int" path="res://scripts/combat.tscn" id="3_qhqgy"]
+[ext_resource type="PackedScene" uid="uid://dweoh56tv63ab" path="res://ui/player_ui.tscn" id="4_dqkch"]
+[ext_resource type="PackedScene" uid="uid://djv33atg1niub" path="res://scripts/SoundPlayer.tscn" id="5_qlg0r"]
+[ext_resource type="PackedScene" uid="uid://7g1eo0tm8px6" path="res://scenes/player_projectile_spawner.tscn" id="6_tuyoq"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_g4v7s"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_g4v7s"]
+
+[node name="Player" type="CharacterBody3D" unique_id=722779717 groups=["player"]]
+collision_mask = 122
+script = ExtResource("1_3vyb7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=812124521]
+shape = SubResource("SphereShape3D_g4v7s")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D" unique_id=1441976893]
+material_override = ExtResource("2_g2els")
+mesh = SubResource("SphereMesh_g4v7s")
+
+[node name="Combat" parent="." unique_id=808464808 instance=ExtResource("3_qhqgy")]
+unique_name_in_owner = true
+
+[node name="PlayerUi" parent="." unique_id=1724249157 instance=ExtResource("4_dqkch")]
+unique_name_in_owner = true
+
+[node name="SoundPlayer" parent="." unique_id=161156493 instance=ExtResource("5_qlg0r")]
+unique_name_in_owner = true
+
+[node name="PlayerProjectileSpawner" parent="." unique_id=1103244674 instance=ExtResource("6_tuyoq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

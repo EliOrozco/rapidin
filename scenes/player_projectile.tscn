@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://cb2olrelwusim"]
+
+[ext_resource type="Material" uid="uid://bsqah8pn8qd63" path="res://materials/player_projectile.tres" id="1_lqp5n"]
+[ext_resource type="Script" uid="uid://bh25vc7ydm87y" path="res://scripts/player_projectile.gd" id="1_oxij3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
+size = Vector3(1, 0.1, 0.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
+size = Vector3(1, 0.1, 0.1)
+
+[node name="PlayerProjectile" type="RigidBody3D" unique_id=956215763 groups=["player_projectile"]]
+top_level = true
+collision_layer = 4
+collision_mask = 10
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+mass = 0.1
+continuous_cd = true
+constant_force = Vector3(2, 0, 0)
+script = ExtResource("1_oxij3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1763446055]
+shape = SubResource("BoxShape3D_g4v7s")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=509320343]
+material_override = ExtResource("1_lqp5n")
+mesh = SubResource("BoxMesh_g4v7s")
+
+[node name="Timer" type="Timer" parent="." unique_id=1950497043]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

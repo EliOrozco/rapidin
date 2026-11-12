@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://c0xpcxy3074l6"]
+
+[ext_resource type="Material" uid="uid://bo0sufb4yn6bl" path="res://materials/ground.tres" id="1_7ykc4"]
+[ext_resource type="PackedScene" uid="uid://drffra5edtape" path="res://scenes/player.tscn" id="2_pu3yx"]
+[ext_resource type="PackedScene" uid="uid://dde76gk6cc66o" path="res://scenes/enemy.tscn" id="3_gubc5"]
+[ext_resource type="Script" uid="uid://bpmvt4l8ed2u8" path="res://scripts/killzone.gd" id="5_gubc5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
+size = Vector3(24, 1, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
+size = Vector3(27, 1, 15)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d0u6y"]
+size = Vector3(1, 1, 30)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yf5fn"]
+size = Vector3(66, 1, 50)
+
+[node name="Node3D" type="Node3D" unique_id=1122983087]
+
+[node name="floor" type="StaticBody3D" parent="." unique_id=1222662888]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floor" unique_id=1653628274]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 0)
+shape = SubResource("BoxShape3D_g4v7s")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="floor" unique_id=360528894]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
+material_override = ExtResource("1_7ykc4")
+mesh = SubResource("BoxMesh_g4v7s")
+
+[node name="Player" parent="." unique_id=722779717 instance=ExtResource("2_pu3yx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1723841660]
+transform = Transform3D(-4.371139e-08, 0.86602545, -0.49999997, 0, 0.49999997, 0.86602545, 1, 3.7855173e-08, -2.1855692e-08, -4.9999995, 6, 1.4210855e-14)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1809744367]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 11, 0)
+
+[node name="Enemy" parent="." unique_id=24022844 instance=ExtResource("3_gubc5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, -2)
+
+[node name="borders" type="Node3D" parent="." unique_id=1751843408]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="borders" unique_id=1316670061]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 0)
+collision_layer = 64
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="borders/StaticBody3D" unique_id=1783619749]
+shape = SubResource("BoxShape3D_d0u6y")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="borders" unique_id=146036859]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 5, 0, -8)
+collision_layer = 64
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="borders/StaticBody3D2" unique_id=899452970]
+shape = SubResource("BoxShape3D_d0u6y")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="borders" unique_id=1520548135]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 5, 0, 8)
+collision_layer = 64
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="borders/StaticBody3D3" unique_id=425561861]
+shape = SubResource("BoxShape3D_d0u6y")
+
+[node name="killzone" type="Area3D" parent="borders" unique_id=836018286]
+collision_layer = 64
+collision_mask = 63
+script = ExtResource("5_gubc5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="borders/killzone" unique_id=1719876939]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, -6, 0)
+shape = SubResource("BoxShape3D_yf5fn")
+
+[connection signal="body_entered" from="borders/killzone" to="borders/killzone" method="_on_body_entered"]
