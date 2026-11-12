@@ -1,6 +1,7 @@
 class_name enemy extends RigidBody3D
 
 @export var proj : PackedScene
+@export var xporb : PackedScene
 @export_range(0.1, 10, 0.1) var cooldown : float = 3.0
 
 func _ready() -> void:
@@ -25,6 +26,10 @@ func _on_body_entered(body: Node) -> void:
 		p_proj.destroy()
 
 func health_depleted() -> void:
+	var xp_instance = xporb.instantiate() as Node3D
+	get_tree().root.add_child(xp_instance)
+	xp_instance.global_position = global_position
+	
 	%EnemyDeath.play()
 
 func _on_enemy_death_finished() -> void:

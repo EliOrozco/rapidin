@@ -8,11 +8,13 @@ var target_velocity : Vector3 = Vector3.ZERO
 
 func _ready() -> void:
 	#sync ui
-	%PlayerUi.setup_healtbar(%Combat.max_hp)
-	%PlayerUi.update_healtbar(%Combat.max_hp)
+	%PlayerUi.setup_healthbar(%Combat.max_hp)
+	%PlayerUi.update_healthbar(%Combat.max_hp)
+	leveled_up() #update for xp bar ui
 	
 	#conect signals
 	%Combat.killed.connect(health_depleted)
+	%LevelManager.level_up.connect(leveled_up)
 
 func _process(_delta: float) -> void:
 	pass
@@ -49,14 +51,24 @@ func _physics_process(_delta: float) -> void:
 		var collider : Node = collision.get_collider()
 		
 		if collider.is_in_group("enemy_projectile"):
-			var e_proj : enemy_projectile = collider
-			
-			%Combat.take_damage(e_proj.damage)
+			%Combat.take_damage((collider as enemy_projectile).damage)
 			%PlayerUi.update_healtbar(%Combat.hp)
 			%SoundPlayer.play_sound(sound_player.SOUNDS.HIT, true)
 			
-			e_proj.destroy()
+			collider.destroy()
+		
+		
+		if collider.is_in_group("collectable"):
+			if collider is xp_orb:
+				%LevelManager.increase_xp((collider as xp_orb).experience_amount)
+				%PlayerUi.update_xp_bar(%LevelManager.current_xp)
+				%SoundPlayer.play_sound(sound_player.SOUNDS.PICKUP, true)
+				collider.queue_free()
 
 func health_depleted() -> void:
 	%SoundPlayer.play_sound(sound_player.SOUNDS.DEATH)
 	Gm.set_player_movement(false)
+
+func leveled_up() -> void:
+	%PlayerUi.setup_xpbar(%LevelManager.level_tresholds[%LevelManager.current_level])
+	%PlayerUi.update_xp_bar(%LevelManager.current_xp)

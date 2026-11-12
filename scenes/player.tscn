@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dweoh56tv63ab" path="res://ui/player_ui.tscn" id="4_dqkch"]
 [ext_resource type="PackedScene" uid="uid://djv33atg1niub" path="res://scripts/SoundPlayer.tscn" id="5_qlg0r"]
 [ext_resource type="PackedScene" uid="uid://7g1eo0tm8px6" path="res://scenes/player_projectile_spawner.tscn" id="6_tuyoq"]
+[ext_resource type="PackedScene" uid="uid://cv5fvhwkc6bsl" path="res://scripts/level_manager.tscn" id="7_fjrip"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_g4v7s"]
 
@@ -33,3 +34,6 @@ unique_name_in_owner = true
 
 [node name="PlayerProjectileSpawner" parent="." unique_id=1103244674 instance=ExtResource("6_tuyoq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="LevelManager" parent="." unique_id=1148009077 instance=ExtResource("7_fjrip")]
+unique_name_in_owner = true

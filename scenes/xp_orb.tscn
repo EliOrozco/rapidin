@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://ffu8oobi56ak"]
+
+[ext_resource type="Script" uid="uid://dbcyvu8gds1w0" path="res://scripts/xp_orb.gd" id="1_me6n8"]
+[ext_resource type="Material" uid="uid://s442ux6jd5ed" path="res://materials/xp_orb.tres" id="1_pkphv"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_g4v7s"]
+radius = 0.3
+
+[sub_resource type="SphereMesh" id="SphereMesh_yf5fn"]
+radius = 0.1
+height = 0.2
+
+[node name="XpOrb" type="RigidBody3D" unique_id=1941030286 groups=["collectable"]]
+top_level = true
+collision_layer = 32
+collision_mask = 2
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+mass = 0.1
+can_sleep = false
+continuous_cd = true
+constant_force = Vector3(-1, 0, 0)
+script = ExtResource("1_me6n8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=865428252]
+shape = SubResource("SphereShape3D_g4v7s")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1926515827]
+material_override = ExtResource("1_pkphv")
+mesh = SubResource("SphereMesh_yf5fn")
