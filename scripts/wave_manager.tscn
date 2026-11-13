@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://45wnufg2ynxv"]
+
+[ext_resource type="Script" uid="uid://dan80utm3liqj" path="res://scripts/wave_manager.gd" id="1_rycvs"]
+[ext_resource type="Script" uid="uid://bitl3yan4ddjk" path="res://scripts/wave.gd" id="2_plwno"]
+[ext_resource type="PackedScene" uid="uid://dde76gk6cc66o" path="res://scenes/enemy.tscn" id="3_6sr0t"]
+
+[sub_resource type="Resource" id="Resource_3ogpg"]
+script = ExtResource("2_plwno")
+enemy_type_amount = Dictionary[PackedScene, int]({
+ExtResource("3_6sr0t"): 3
+})
+metadata/_custom_type_script = "uid://bitl3yan4ddjk"
+
+[node name="WaveManager" type="Node" unique_id=1414437939]
+script = ExtResource("1_rycvs")
+waves = Array[ExtResource("2_plwno")]([SubResource("Resource_3ogpg")])

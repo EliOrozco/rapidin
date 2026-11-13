@@ -11,7 +11,7 @@ func _ready() -> void:
 	%Combat.killed.connect(health_depleted)
 
 func _on_timer_timeout() -> void:
-	var projectile_instance = proj.instantiate() as Node3D
+	var projectile_instance : Node3D = proj.instantiate()
 	get_tree().root.add_child(projectile_instance)
 	projectile_instance.global_position = global_position
 
@@ -26,7 +26,7 @@ func _on_body_entered(body: Node) -> void:
 		p_proj.destroy()
 
 func health_depleted() -> void:
-	var xp_instance = xporb.instantiate() as Node3D
+	var xp_instance : Node3D = xporb.instantiate()
 	get_tree().root.add_child(xp_instance)
 	xp_instance.global_position = global_position
 	

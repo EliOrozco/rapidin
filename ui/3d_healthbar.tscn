@@ -2,12 +2,16 @@
 
 [ext_resource type="Script" uid="uid://c6i772i536jxx" path="res://scripts/_3d_healthbar.gd" id="1_psbuc"]
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_md484"]
+viewport_path = NodePath("SubViewport")
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yf5fn"]
 bg_color = Color(1, 0.3137255, 0.3137255, 1)
 
 [node name="_3d_healthbar" type="Sprite3D" unique_id=434888496]
 billboard = 1
 no_depth_test = true
+texture = SubResource("ViewportTexture_md484")
 script = ExtResource("1_psbuc")
 
 [node name="SubViewport" type="SubViewport" parent="." unique_id=207727935]

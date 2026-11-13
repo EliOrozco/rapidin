@@ -7,6 +7,6 @@ func _ready() -> void:
 	%Timer.wait_time = cooldown
 
 func _on_timer_timeout() -> void:
-	var projectile_instance = proj.instantiate() as Node3D
+	var projectile_instance : Node3D = proj.instantiate()
 	get_tree().root.add_child(projectile_instance)
 	projectile_instance.global_position = global_position #has to be after adding to scene

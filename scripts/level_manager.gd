@@ -30,7 +30,7 @@ func increase_xp(amount : int) -> void:
 	current_xp += amount
 	
 	if current_xp >= level_tresholds[current_level]: #TODO: Maybe we can do better math here
-		var remainder_xp = level_tresholds[current_level] - current_xp
+		var remainder_xp : int = level_tresholds[current_level] - current_xp
 		current_level += 1
 		
 		if current_level >= 10: #TODO: Hack for levels above cap, maybe not necessary if i can make it infinite

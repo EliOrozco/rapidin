@@ -35,11 +35,18 @@ layout_mode = 2
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=170729494]
 layout_mode = 2
 
+[node name="xplabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1537502083]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+text = "00"
+
 [node name="XpBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1380293988]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 4
 theme_override_styles/fill = SubResource("StyleBoxFlat_g4v7s")
 value = 50.0
 show_percentage = false

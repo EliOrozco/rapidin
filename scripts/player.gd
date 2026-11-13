@@ -46,13 +46,13 @@ func _physics_process(_delta: float) -> void:
 	
 	move_and_slide()
 	
-	for i in get_slide_collision_count():
-		var collision = get_slide_collision(i)
+	for i : int in get_slide_collision_count():
+		var collision : KinematicCollision3D = get_slide_collision(i)
 		var collider : Node = collision.get_collider()
 		
 		if collider.is_in_group("enemy_projectile"):
 			%Combat.take_damage((collider as enemy_projectile).damage)
-			%PlayerUi.update_healtbar(%Combat.hp)
+			%PlayerUi.update_healthbar(%Combat.hp)
 			%SoundPlayer.play_sound(sound_player.SOUNDS.HIT, true)
 			
 			collider.destroy()
@@ -70,5 +70,5 @@ func health_depleted() -> void:
 	Gm.set_player_movement(false)
 
 func leveled_up() -> void:
-	%PlayerUi.setup_xpbar(%LevelManager.level_tresholds[%LevelManager.current_level])
+	%PlayerUi.setup_xpbar(%LevelManager.level_tresholds[%LevelManager.current_level], %LevelManager.current_level)
 	%PlayerUi.update_xp_bar(%LevelManager.current_xp)
