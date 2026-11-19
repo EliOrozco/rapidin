@@ -6,9 +6,6 @@ class_name enemy_spawner extends Marker3D
 
 signal enemy_died
 
-func _ready() -> void:
-	spawn_next()
-
 func spawn_next() -> void:
 	if enemies_details.size() > 0:
 		var next : PackedScene = enemies_details.pop_front()
@@ -17,6 +14,7 @@ func spawn_next() -> void:
 		
 		get_tree().root.add_child(instance)
 		instance.global_position = global_position
+		%Cooldown.start(cooldown)
 
 func enemy_has_died() -> void:
 	enemy_died.emit()

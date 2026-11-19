@@ -28,12 +28,16 @@ func _on_body_entered(body: Node) -> void:
 		p_proj.destroy()
 
 func health_depleted() -> void:
+	set_collision_enabled(false)
 	var xp_instance : Node3D = xporb.instantiate()
 	get_tree().root.add_child(xp_instance)
 	xp_instance.global_position = global_position
 	is_dead.emit()
 	
 	%EnemyDeath.play()
+
+func set_collision_enabled(enabled: bool) -> void:
+	%CollisionShape3D.set_deferred("disabled", not enabled)
 
 func _on_enemy_death_finished() -> void:
 	queue_free()

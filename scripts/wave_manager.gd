@@ -45,6 +45,7 @@ func start_wave() -> void:
 		%time_content_label.text = "OLEADA"
 	else:
 		current_mode = MODE.WAITING
+		%time_content_label.text = "GANASTE"
 
 func assign_enemies_to_points() -> void:
 	#get all enemies in wave
@@ -76,6 +77,7 @@ func enter_wave_cooldown() -> void:
 	current_mode = MODE.WAITING
 	%time_content_label.text = "PREPARACIÓN"
 	%wave_cooldown.start()
+	%wave_dur_remaining.stop()
 
 func _on_wave_cooldown_timeout() -> void:
 	start_wave()

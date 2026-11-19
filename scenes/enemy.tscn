@@ -15,6 +15,16 @@ size = Vector3(1, 2, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
 size = Vector3(1, 2, 1)
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_21x48"]
+random_pitch = 1.7817973
+streams_count = 1
+stream_0/stream = ExtResource("6_xwavj")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_332ww"]
+random_pitch = 1.7817973
+streams_count = 1
+stream_0/stream = ExtResource("7_nenq2")
+
 [sub_resource type="ViewportTexture" id="ViewportTexture_md484"]
 viewport_path = NodePath("SubViewport")
 
@@ -35,6 +45,7 @@ xporb = ExtResource("3_md484")
 cooldown = 7.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1292302231]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("BoxShape3D_g4v7s")
 
@@ -52,11 +63,11 @@ unique_name_in_owner = true
 
 [node name="Click" type="AudioStreamPlayer" parent="." unique_id=280536578]
 unique_name_in_owner = true
-stream = ExtResource("6_xwavj")
+stream = SubResource("AudioStreamRandomizer_21x48")
 
 [node name="EnemyDeath" type="AudioStreamPlayer" parent="." unique_id=454774183]
 unique_name_in_owner = true
-stream = ExtResource("7_nenq2")
+stream = SubResource("AudioStreamRandomizer_332ww")
 
 [node name="_3d_healthbar" parent="." unique_id=434888496 instance=ExtResource("5_c4w8v")]
 unique_name_in_owner = true

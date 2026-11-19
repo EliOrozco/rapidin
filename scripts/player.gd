@@ -64,6 +64,13 @@ func _physics_process(_delta: float) -> void:
 				%PlayerUi.update_xp_bar(%LevelManager.current_xp)
 				%SoundPlayer.play_sound(sound_player.SOUNDS.PICKUP, true)
 				collider.queue_free()
+		
+		if collider.is_in_group("enemy"):
+			%Combat.take_damage(1)
+			%PlayerUi.update_healthbar(%Combat.hp)
+			%SoundPlayer.play_sound(sound_player.SOUNDS.HIT, true)
+			
+			(collider as enemy).health_depleted()
 
 func health_depleted() -> void:
 	%SoundPlayer.play_sound(sound_player.SOUNDS.DEATH)
@@ -77,3 +84,7 @@ func enemy_reached_killzone() -> void:
 func leveled_up() -> void:
 	%PlayerUi.setup_xpbar(%LevelManager.level_tresholds[%LevelManager.current_level], %LevelManager.current_level)
 	%PlayerUi.update_xp_bar(%LevelManager.current_xp)
+
+
+func _on_combat_got_hit() -> void:
+	pass # Replace with function body.

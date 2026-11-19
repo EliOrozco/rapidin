@@ -10,13 +10,10 @@ func play_sound(which : SOUNDS, pitch_variaton : bool = false) -> void:
 	if pitch_variaton:
 		match which:
 			SOUNDS.HIT:
-				%Hit.pitch_scale = randf_range(0.8, 1.2)
 				%Hit.play()
 			SOUNDS.DEATH:
-				%Death.pitch_scale = randf_range(0.8, 1.2)
 				%Death.play()
 			SOUNDS.PICKUP:
-				%Pickorb.pitch_scale = randf_range(0.8, 1.2)
 				%Pickorb.play()
 	
 	

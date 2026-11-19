@@ -23,7 +23,7 @@ size = Vector3(66, 1, 50)
 [sub_resource type="Resource" id="Resource_plwno"]
 script = ExtResource("6_18nlu")
 enemy_and_amount = Dictionary[PackedScene, int]({
-ExtResource("3_gubc5"): 5
+ExtResource("3_gubc5"): 1
 })
 metadata/_custom_type_script = "uid://bitl3yan4ddjk"
 
