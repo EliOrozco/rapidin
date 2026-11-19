@@ -1,16 +1,106 @@
 [gd_scene format=3 uid="uid://45wnufg2ynxv"]
 
 [ext_resource type="Script" uid="uid://dan80utm3liqj" path="res://scripts/wave_manager.gd" id="1_rycvs"]
-[ext_resource type="Script" uid="uid://bitl3yan4ddjk" path="res://scripts/wave.gd" id="2_plwno"]
-[ext_resource type="PackedScene" uid="uid://dde76gk6cc66o" path="res://scenes/enemy.tscn" id="3_6sr0t"]
-
-[sub_resource type="Resource" id="Resource_3ogpg"]
-script = ExtResource("2_plwno")
-enemy_type_amount = Dictionary[PackedScene, int]({
-ExtResource("3_6sr0t"): 3
-})
-metadata/_custom_type_script = "uid://bitl3yan4ddjk"
 
 [node name="WaveManager" type="Node" unique_id=1414437939]
 script = ExtResource("1_rycvs")
-waves = Array[ExtResource("2_plwno")]([SubResource("Resource_3ogpg")])
+
+[node name="wave_dur_remaining" type="Timer" parent="." unique_id=1618278011]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="wave_cooldown" type="Timer" parent="." unique_id=1848075583]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="Control" type="Control" parent="." unique_id=1261562631]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control" unique_id=1401293330]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer" unique_id=171933947]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer" unique_id=619745420]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="Control/MarginContainer/VBoxContainer/HBoxContainer" unique_id=2029081920]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_font_sizes/font_size = 30
+text = "Oleada"
+
+[node name="time_content_label" type="Label" parent="Control/MarginContainer/VBoxContainer/HBoxContainer" unique_id=2035682723]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_font_sizes/font_size = 30
+text = "TIEMPO"
+
+[node name="Label3" type="Label" parent="Control/MarginContainer/VBoxContainer/HBoxContainer" unique_id=827553101]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_font_sizes/font_size = 30
+text = "Enemigos restantes"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control/MarginContainer/VBoxContainer" unique_id=922849434]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="waves_completed_label" type="Label" parent="Control/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1538985366]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+text = "0"
+
+[node name="slash" type="Label" parent="Control/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1271692755]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "/"
+
+[node name="waves_total_label" type="Label" parent="Control/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=535603510]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+text = "0"
+
+[node name="time_label" type="Label" parent="Control/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=347289391]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+text = "0:00"
+
+[node name="enemies_remaining_label" type="Label" parent="Control/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1362404631]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+text = "0"
+
+[node name="CenterContainer" type="CenterContainer" parent="Control/MarginContainer" unique_id=626934839]
+layout_mode = 2
+
+[node name="timeout_label" type="Label" parent="Control/MarginContainer/CenterContainer" unique_id=1523037390]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "HOLA TE MORISTE"
+
+[connection signal="timeout" from="wave_dur_remaining" to="." method="_on_wave_dur_remaining_timeout"]
+[connection signal="timeout" from="wave_cooldown" to="." method="_on_wave_cooldown_timeout"]

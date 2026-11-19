@@ -3,8 +3,10 @@
 [ext_resource type="Material" uid="uid://bo0sufb4yn6bl" path="res://materials/ground.tres" id="1_7ykc4"]
 [ext_resource type="PackedScene" uid="uid://drffra5edtape" path="res://scenes/player.tscn" id="2_pu3yx"]
 [ext_resource type="PackedScene" uid="uid://dde76gk6cc66o" path="res://scenes/enemy.tscn" id="3_gubc5"]
+[ext_resource type="PackedScene" uid="uid://45wnufg2ynxv" path="res://scripts/wave_manager.tscn" id="5_c16ls"]
 [ext_resource type="Script" uid="uid://bpmvt4l8ed2u8" path="res://scripts/killzone.gd" id="5_gubc5"]
 [ext_resource type="PackedScene" uid="uid://e5rdxsft8pna" path="res://scenes/enemy_spawner.tscn" id="5_rt2n2"]
+[ext_resource type="Script" uid="uid://bitl3yan4ddjk" path="res://scripts/wave.gd" id="6_18nlu"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
 size = Vector3(24, 1, 10)
@@ -17,6 +19,27 @@ size = Vector3(1, 1, 30)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yf5fn"]
 size = Vector3(66, 1, 50)
+
+[sub_resource type="Resource" id="Resource_plwno"]
+script = ExtResource("6_18nlu")
+enemy_and_amount = Dictionary[PackedScene, int]({
+ExtResource("3_gubc5"): 5
+})
+metadata/_custom_type_script = "uid://bitl3yan4ddjk"
+
+[sub_resource type="Resource" id="Resource_c16ls"]
+script = ExtResource("6_18nlu")
+enemy_and_amount = Dictionary[PackedScene, int]({
+ExtResource("3_gubc5"): 2
+})
+metadata/_custom_type_script = "uid://bitl3yan4ddjk"
+
+[sub_resource type="Resource" id="Resource_18nlu"]
+script = ExtResource("6_18nlu")
+enemy_and_amount = Dictionary[PackedScene, int]({
+ExtResource("3_gubc5"): 3
+})
+metadata/_custom_type_script = "uid://bitl3yan4ddjk"
 
 [node name="Node3D" type="Node3D" unique_id=1122983087]
 
@@ -69,10 +92,11 @@ collision_mask = 0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="borders/StaticBody3D3" unique_id=425561861]
 shape = SubResource("BoxShape3D_d0u6y")
 
-[node name="killzone" type="Area3D" parent="borders" unique_id=836018286]
+[node name="killzone" type="Area3D" parent="borders" unique_id=836018286 node_paths=PackedStringArray("p")]
 collision_layer = 64
 collision_mask = 63
 script = ExtResource("5_gubc5")
+p = NodePath("../../Player")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="borders/killzone" unique_id=1719876939]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, -6, 0)
@@ -82,6 +106,16 @@ shape = SubResource("BoxShape3D_yf5fn")
 
 [node name="EnemySpawner" parent="enemy_spawners" unique_id=544754744 instance=ExtResource("5_rt2n2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
-enemies_details = Array[PackedScene]([ExtResource("3_gubc5")])
+
+[node name="EnemySpawner2" parent="enemy_spawners" unique_id=626995551 instance=ExtResource("5_rt2n2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 3)
+
+[node name="EnemySpawner3" parent="enemy_spawners" unique_id=2069651538 instance=ExtResource("5_rt2n2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -3)
+
+[node name="WaveManager" parent="." unique_id=1414437939 node_paths=PackedStringArray("spawnpoints") instance=ExtResource("5_c16ls")]
+wave_cooldown = 10.0
+spawnpoints = [NodePath("../enemy_spawners/EnemySpawner"), NodePath("../enemy_spawners/EnemySpawner2"), NodePath("../enemy_spawners/EnemySpawner3")]
+waves = Array[ExtResource("6_18nlu")]([SubResource("Resource_plwno"), SubResource("Resource_c16ls"), SubResource("Resource_18nlu")])
 
 [connection signal="body_entered" from="borders/killzone" to="borders/killzone" method="_on_body_entered"]

@@ -69,6 +69,11 @@ func health_depleted() -> void:
 	%SoundPlayer.play_sound(sound_player.SOUNDS.DEATH)
 	Gm.set_player_movement(false)
 
+func enemy_reached_killzone() -> void:
+	%Combat.take_damage(2)
+	%PlayerUi.update_healthbar(%Combat.hp)
+	%SoundPlayer.play_sound(sound_player.SOUNDS.HIT, true)
+
 func leveled_up() -> void:
 	%PlayerUi.setup_xpbar(%LevelManager.level_tresholds[%LevelManager.current_level], %LevelManager.current_level)
 	%PlayerUi.update_xp_bar(%LevelManager.current_xp)
