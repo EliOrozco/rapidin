@@ -37,3 +37,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="LevelManager" parent="." unique_id=1148009077 instance=ExtResource("7_fjrip")]
 unique_name_in_owner = true
+
+[connection signal="got_hit" from="Combat" to="." method="_on_combat_got_hit"]
