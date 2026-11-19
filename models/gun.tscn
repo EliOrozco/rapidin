@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://c2siff0onhj5p"]
+
+[ext_resource type="PackedScene" uid="uid://bd6tc52alg6k6" path="res://models/gun.gltf" id="1_o51pl"]
+
+[node name="gun" unique_id=1555775723 instance=ExtResource("1_o51pl")]
+
+[node name="root" parent="." index="0" unique_id=1382112755]
+transform = Transform3D(1, 0, 0, 0, 0.7071068, -0.7071067, 0, 0.7071067, 0.7071068, 0, 0, 0)
+
+[node name="AnimationPlayer" parent="." index="1" unique_id=291233523]
+autoplay = &"rotate"
