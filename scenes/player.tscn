@@ -39,4 +39,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 [node name="LevelManager" parent="." unique_id=1148009077 instance=ExtResource("7_fjrip")]
 unique_name_in_owner = true
 
+[node name="gameover_label" type="Label" parent="." unique_id=2031026725]
+visible = false
+z_index = 5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 120
+text = "Fin del juego"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="got_hit" from="Combat" to="." method="_on_combat_got_hit"]

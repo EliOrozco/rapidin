@@ -30,15 +30,14 @@ viewport_path = NodePath("SubViewport")
 
 [node name="Enemy" type="RigidBody3D" unique_id=24022844 groups=["enemy"]]
 collision_layer = 8
-collision_mask = 7
+collision_mask = 15
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
-mass = 0.1
 can_sleep = false
 contact_monitor = true
 max_contacts_reported = 1
-constant_force = Vector3(-1, 0, 0)
+constant_force = Vector3(-10, 0, 0)
 script = ExtResource("1_md0e3")
 proj = ExtResource("2_5uy6h")
 xporb = ExtResource("3_md484")

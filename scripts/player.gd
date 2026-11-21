@@ -74,7 +74,8 @@ func _physics_process(_delta: float) -> void:
 
 func health_depleted() -> void:
 	%SoundPlayer.play_sound(sound_player.SOUNDS.DEATH)
-	Gm.set_player_movement(false)
+	Gm.set_pause_mode(true)
+	$gameover_label.show()
 
 func enemy_reached_killzone() -> void:
 	%Combat.take_damage(2)
@@ -82,6 +83,7 @@ func enemy_reached_killzone() -> void:
 	%SoundPlayer.play_sound(sound_player.SOUNDS.HIT)
 
 func leveled_up(u : upgrade_details) -> void:
+	update_xp_ui()
 	%SoundPlayer.play_sound(sound_player.SOUNDS.POWERUP)
 	match u.type:
 		upgrade_details.TYPE.ATTACK:

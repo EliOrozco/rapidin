@@ -41,6 +41,34 @@ ExtResource("3_gubc5"): 3
 })
 metadata/_custom_type_script = "uid://bitl3yan4ddjk"
 
+[sub_resource type="Resource" id="Resource_aie4f"]
+script = ExtResource("6_18nlu")
+enemy_and_amount = Dictionary[PackedScene, int]({
+ExtResource("3_gubc5"): 4
+})
+metadata/_custom_type_script = "uid://bitl3yan4ddjk"
+
+[sub_resource type="Resource" id="Resource_l4fel"]
+script = ExtResource("6_18nlu")
+enemy_and_amount = Dictionary[PackedScene, int]({
+ExtResource("3_gubc5"): 5
+})
+metadata/_custom_type_script = "uid://bitl3yan4ddjk"
+
+[sub_resource type="Resource" id="Resource_vewc8"]
+script = ExtResource("6_18nlu")
+enemy_and_amount = Dictionary[PackedScene, int]({
+ExtResource("3_gubc5"): 6
+})
+metadata/_custom_type_script = "uid://bitl3yan4ddjk"
+
+[sub_resource type="Resource" id="Resource_51ww6"]
+script = ExtResource("6_18nlu")
+enemy_and_amount = Dictionary[PackedScene, int]({
+ExtResource("3_gubc5"): 3
+})
+metadata/_custom_type_script = "uid://bitl3yan4ddjk"
+
 [node name="Node3D" type="Node3D" unique_id=1122983087]
 
 [node name="floor" type="StaticBody3D" parent="." unique_id=1222662888]
@@ -119,9 +147,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 3)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -3)
 
 [node name="WaveManager" parent="." unique_id=1414437939 node_paths=PackedStringArray("spawnpoints") instance=ExtResource("5_c16ls")]
-wave_cooldown = 10.0
 spawnpoints = [NodePath("../enemy_spawners/EnemySpawner"), NodePath("../enemy_spawners/EnemySpawner2"), NodePath("../enemy_spawners/EnemySpawner3")]
-waves = Array[ExtResource("6_18nlu")]([SubResource("Resource_plwno"), SubResource("Resource_c16ls"), SubResource("Resource_18nlu")])
+waves = Array[ExtResource("6_18nlu")]([SubResource("Resource_plwno"), SubResource("Resource_c16ls"), SubResource("Resource_18nlu"), SubResource("Resource_aie4f"), SubResource("Resource_l4fel"), SubResource("Resource_vewc8"), SubResource("Resource_51ww6")])
 
 [node name="Player" parent="." unique_id=722779717 instance=ExtResource("2_pu3yx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
