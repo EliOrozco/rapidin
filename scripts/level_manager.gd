@@ -1,6 +1,9 @@
 class_name level_manager extends Node
 
-signal level_up
+@onready var chooser: Control = $chooser
+@onready var center: HBoxContainer = $chooser/MarginContainer/center
+
+signal level_up(u : upgrade_details)
 
 @export var current_xp : int
 @export var current_level : int = 1
@@ -26,6 +29,9 @@ signal level_up
 	10: 180
 }
 
+func _ready() -> void:
+	chooser.hide()
+
 func increase_xp(amount : int) -> void:
 	current_xp += amount
 	
@@ -36,8 +42,15 @@ func increase_xp(amount : int) -> void:
 		if current_level >= 10: #TODO: Hack for levels above cap, maybe not necessary if i can make it infinite
 			current_level = 10
 		
-		level_up.emit()
-		
 		current_xp = remainder_xp
-	
-	
+		
+		choose_upgrade()
+
+func choose_upgrade() -> void:
+	Gm.set_pause_mode(true)
+	chooser.show()
+
+func _on_upgrade_card_got_selected(u: upgrade_details) -> void:
+	level_up.emit(u)
+	Gm.set_pause_mode(false)
+	chooser.hide()

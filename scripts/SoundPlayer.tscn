@@ -4,6 +4,7 @@
 [ext_resource type="AudioStream" uid="uid://08lphln6i4v4" path="res://fx/sfx/hit.wav" id="2_lxfhb"]
 [ext_resource type="AudioStream" uid="uid://bqf0vh4or6rli" path="res://fx/sfx/death.wav" id="3_lxfhb"]
 [ext_resource type="AudioStream" uid="uid://cnih3mk1ibvd3" path="res://fx/sfx/pickorb.wav" id="4_21x48"]
+[ext_resource type="AudioStream" uid="uid://baa5y6jjlpdex" path="res://fx/sfx/powerUp.wav" id="5_332ww"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_g4v7s"]
 random_pitch = 1.7817973
@@ -20,6 +21,11 @@ random_pitch = 1.7817973
 streams_count = 1
 stream_0/stream = ExtResource("4_21x48")
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_d0u6y"]
+random_pitch = 1.7817973
+streams_count = 1
+stream_0/stream = ExtResource("5_332ww")
+
 [node name="SoundPlayer" type="Node" unique_id=161156493]
 script = ExtResource("1_50jlu")
 
@@ -34,3 +40,7 @@ stream = SubResource("AudioStreamRandomizer_yf5fn")
 [node name="Pickorb" type="AudioStreamPlayer" parent="." unique_id=177954537]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_57qmd")
+
+[node name="powerUp" type="AudioStreamPlayer" parent="." unique_id=1184792314]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_d0u6y")

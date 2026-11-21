@@ -3,7 +3,7 @@ class_name combat extends Node
 signal overhealed
 signal killed
 signal got_hit
-signal invicibility_finished
+#signal invicibility_finished
 
 @export var max_hp : int = 5
 @export_range(0.0, 1, 0.1, "suffix:S") var invicibility : float
@@ -30,4 +30,3 @@ func take_heal(amount : int) -> void:
 
 func kill() -> void:
 	killed.emit()
-	

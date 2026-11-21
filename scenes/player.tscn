@@ -33,6 +33,7 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 
 [node name="PlayerProjectileSpawner" parent="." unique_id=1103244674 instance=ExtResource("6_tuyoq")]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="LevelManager" parent="." unique_id=1148009077 instance=ExtResource("7_fjrip")]

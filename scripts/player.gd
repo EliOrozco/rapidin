@@ -10,7 +10,7 @@ func _ready() -> void:
 	#sync ui
 	%PlayerUi.setup_healthbar(%Combat.max_hp)
 	%PlayerUi.update_healthbar(%Combat.max_hp)
-	leveled_up() #update for xp bar ui
+	update_xp_ui()
 	
 	#conect signals
 	%Combat.killed.connect(health_depleted)
@@ -53,7 +53,7 @@ func _physics_process(_delta: float) -> void:
 		if collider.is_in_group("enemy_projectile"):
 			%Combat.take_damage((collider as enemy_projectile).damage)
 			%PlayerUi.update_healthbar(%Combat.hp)
-			%SoundPlayer.play_sound(sound_player.SOUNDS.HIT, true)
+			%SoundPlayer.play_sound(sound_player.SOUNDS.HIT)
 			
 			collider.destroy()
 		
@@ -62,13 +62,13 @@ func _physics_process(_delta: float) -> void:
 			if collider is xp_orb:
 				%LevelManager.increase_xp((collider as xp_orb).experience_amount)
 				%PlayerUi.update_xp_bar(%LevelManager.current_xp)
-				%SoundPlayer.play_sound(sound_player.SOUNDS.PICKUP, true)
+				%SoundPlayer.play_sound(sound_player.SOUNDS.PICKUP)
 				collider.queue_free()
 		
 		if collider.is_in_group("enemy"):
 			%Combat.take_damage(1)
 			%PlayerUi.update_healthbar(%Combat.hp)
-			%SoundPlayer.play_sound(sound_player.SOUNDS.HIT, true)
+			%SoundPlayer.play_sound(sound_player.SOUNDS.HIT)
 			
 			(collider as enemy).health_depleted()
 
@@ -79,12 +79,22 @@ func health_depleted() -> void:
 func enemy_reached_killzone() -> void:
 	%Combat.take_damage(2)
 	%PlayerUi.update_healthbar(%Combat.hp)
-	%SoundPlayer.play_sound(sound_player.SOUNDS.HIT, true)
+	%SoundPlayer.play_sound(sound_player.SOUNDS.HIT)
 
-func leveled_up() -> void:
+func leveled_up(u : upgrade_details) -> void:
+	%SoundPlayer.play_sound(sound_player.SOUNDS.POWERUP)
+	match u.type:
+		upgrade_details.TYPE.ATTACK:
+			%PlayerProjectileSpawner.increase_base_damage_to_all_projectiles(1)
+		upgrade_details.TYPE.SPEED:
+			pass
+		upgrade_details.TYPE.HEALTH:
+			pass
+
+
+func update_xp_ui() -> void:
 	%PlayerUi.setup_xpbar(%LevelManager.level_tresholds[%LevelManager.current_level], %LevelManager.current_level)
 	%PlayerUi.update_xp_bar(%LevelManager.current_xp)
-
 
 func _on_combat_got_hit() -> void:
 	pass # Replace with function body.

@@ -21,7 +21,7 @@ func _on_body_entered(body: Node) -> void:
 	if body.is_in_group("player_projectile"):
 		var p_proj : player_projectile = body
 		
-		%Combat.take_damage(p_proj.damage)
+		%Combat.take_damage(p_proj.get_total_damage())
 		%_3d_healthbar.update_healtbar(%Combat.hp)
 		%Click.play()
 		
