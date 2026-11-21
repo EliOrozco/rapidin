@@ -101,7 +101,7 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
-text = "HOLA TE MORISTE"
+text = "SIN TIEMPO EN LA OLEADA"
 
 [connection signal="timeout" from="wave_dur_remaining" to="." method="_on_wave_dur_remaining_timeout"]
 [connection signal="timeout" from="wave_cooldown" to="." method="_on_wave_cooldown_timeout"]

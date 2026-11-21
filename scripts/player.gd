@@ -16,9 +16,6 @@ func _ready() -> void:
 	%Combat.killed.connect(health_depleted)
 	%LevelManager.level_up.connect(leveled_up)
 
-func _process(_delta: float) -> void:
-	pass
-
 func _physics_process(_delta: float) -> void:
 	total_speed = base_speed * ( 1 + mult_speed)
 	
@@ -82,6 +79,7 @@ func enemy_reached_killzone() -> void:
 	%PlayerUi.update_healthbar(%Combat.hp)
 	%SoundPlayer.play_sound(sound_player.SOUNDS.HIT)
 
+#TODO: add tiered upgrades when they get added
 func leveled_up(u : upgrade_details) -> void:
 	update_xp_ui()
 	%SoundPlayer.play_sound(sound_player.SOUNDS.POWERUP)
@@ -89,9 +87,10 @@ func leveled_up(u : upgrade_details) -> void:
 		upgrade_details.TYPE.ATTACK:
 			%PlayerProjectileSpawner.increase_base_damage_to_all_projectiles(1)
 		upgrade_details.TYPE.SPEED:
-			pass
+			%PlayerProjectileSpawner.increase_cooldown_reduction(0.2)
 		upgrade_details.TYPE.HEALTH:
-			pass
+			%Combat.take_heal(1)
+			%PlayerUi.update_healthbar(%Combat.hp)
 
 
 func update_xp_ui() -> void:

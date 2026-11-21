@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://dmgdvkjlhl0db"]
+
+[ext_resource type="PackedScene" uid="uid://bu0ympedwovfk" path="res://models/donut.gltf" id="1_st8nl"]
+
+[node name="donut" unique_id=483565436 instance=ExtResource("1_st8nl")]
+
+[node name="root" parent="." index="0" unique_id=46353082]
+transform = Transform3D(0.925017, -0.268648, -0.268648, -1.4901159e-08, 0.7071067, -0.7071068, 0.37992567, 0.6540858, 0.65408576, 0, 0.44023386, 0)
+
+[node name="AnimationPlayer" parent="." index="1" unique_id=1891057752]
+autoplay = &"rotate"

@@ -9,7 +9,7 @@
 script = ExtResource("2_eq4p6")
 metadata/_custom_type_script = "uid://blfe7sneqt2ii"
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_ew4bf"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_k0xwx"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_g4v7s"]
@@ -49,7 +49,7 @@ custom_maximum_size = Vector2(250, 250)
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
-texture = SubResource("ViewportTexture_ew4bf")
+texture = SubResource("ViewportTexture_k0xwx")
 
 [node name="Label" type="Label" parent="Button/VBoxContainer" unique_id=1609474951]
 layout_mode = 2

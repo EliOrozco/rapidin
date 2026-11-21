@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://1cn2hx7fha3h" path="res://scripts/level_manager.gd" id="1_pvkuy"]
 [ext_resource type="PackedScene" uid="uid://ssyyosy2mvlm" path="res://ui/upgrade_card.tscn" id="2_rtl6i"]
+[ext_resource type="PackedScene" uid="uid://b5ue4kcxhvd3n" path="res://ui/upgrade_card_speed.tscn" id="3_exrxb"]
+[ext_resource type="PackedScene" uid="uid://dp8ao3rppiuen" path="res://ui/upgrade_card_health.tscn" id="4_qbppf"]
 
 [node name="LevelManager" type="Node" unique_id=1148009077]
 process_mode = 3
@@ -37,4 +39,12 @@ size_flags_vertical = 4
 [node name="upgrade_card" parent="chooser/MarginContainer/center" unique_id=1464436841 instance=ExtResource("2_rtl6i")]
 layout_mode = 2
 
+[node name="upgrade_card_speed" parent="chooser/MarginContainer/center" unique_id=1207556068 instance=ExtResource("3_exrxb")]
+layout_mode = 2
+
+[node name="upgrade_card_health" parent="chooser/MarginContainer/center" unique_id=703448213 instance=ExtResource("4_qbppf")]
+layout_mode = 2
+
 [connection signal="got_selected" from="chooser/MarginContainer/center/upgrade_card" to="." method="_on_upgrade_card_got_selected"]
+[connection signal="got_selected" from="chooser/MarginContainer/center/upgrade_card_speed" to="." method="_on_upgrade_card_speed_got_selected"]
+[connection signal="got_selected" from="chooser/MarginContainer/center/upgrade_card_health" to="." method="_on_upgrade_card_health_got_selected"]

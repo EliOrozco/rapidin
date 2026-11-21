@@ -1,6 +1,6 @@
 class_name wave_manager extends Node
 
-@export_range(5.0, 30.0, 1.0, "suffix:s") var wave_cooldown : float = 5
+@export_range(1.0, 15.0, 1.0, "suffix:s") var wave_cooldown : float = 5
 @export var current_mode : MODE = MODE.RUNNING
 @export var spawnpoints : Array[enemy_spawner]
 @export var waves : Array[wave]

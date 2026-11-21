@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://doevl21r0tbi8"]
+
+[ext_resource type="PackedScene" uid="uid://n8wss3tkvxue" path="res://models/heart.gltf" id="1_y3tc6"]
+
+[node name="hearth" unique_id=709583583 instance=ExtResource("1_y3tc6")]
+
+[node name="root" parent="." index="0" unique_id=107552513]
+transform = Transform3D(0.99084127, 0, 0.13503191, 0, 1, 0, -0.13503191, 0, 0.99084127, 0, 0.0005655347, 0)
+
+[node name="AnimationPlayer" parent="." index="1" unique_id=1903461463]
+autoplay = &"rotate"
